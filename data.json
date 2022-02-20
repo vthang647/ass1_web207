@@ -1,0 +1,68 @@
+[
+    {
+        "id": "1",
+        "question": "Làm thế nào để bắn tơ nhện trong spider man ?",
+        "anwser" : {
+            "A" : "Vẩy tay.",
+            "B" : "Phun ra từ miệng.",
+            "C" : "dựt ít tóc rồi thổi",
+            "D" : "Đấm lao"
+        }
+    },
+    {
+        "id": "2",
+        "question": "$scope trong angular là gì ?",
+        "anwser" : {
+            "A" : "là một biến",
+            "B" : "Là một một đối tượng với các phương thức có sẵn",
+            "C" : "$scope là ống nhòm",
+            "D" : "thể hiện sự dàng buộc giữa view và cotroller"
+        }
+    }
+    ,
+    {
+        "id": "3",
+        "question": "Người lái xe sử dụng đèn như thế nào khi lái xe trong khu đô thị và đông dân cư vào ban đêm ?",
+        "anwser" : {
+            "A" : "Bốc đầu và nẹt bô",
+            "B" : "đèn chiếu gần (đèn cốt)",
+            "C" : "đèn chiếu xa",
+            "D" : "chỉ bật đèn chiếu xa khi đường vắng, đèn chiếu gần đèn cốt khi có xe đi ngược chiều"
+        }
+    }
+    ,
+    {
+        "id": "4",
+        "question": "Một ng-app có thể có bao nhiêu ng-controller",
+        "anwser" : {
+            "A" : "không có ",
+            "B" : "có nhiều",
+            "C" : "chỉ có một ng-controller",
+            "D" : "chỉ có 3"
+        }
+    }
+    ,
+    {
+        "id": "5",
+        "question": "Làm thế nào để bắn tơ nhện trong spider man ?",
+        "anwser" : {
+            "A" : "Vẩy tay.",
+            "B" : "Phun ra từ miệng.",
+            "C" : "dựt ít tóc rồi thổi",
+            "D" : "Đấm lao"
+        }
+    }
+    ,
+    {
+        "id": "6",
+        "question": "Làm thế nào để bắn tơ nhện trong spider man ?",
+        "anwser" : {
+            "A" : "Vẩy tay.",
+            "B" : "Phun ra từ miệng.",
+            "C" : "dựt ít tóc rồi thổi",
+            "D" : "Đấm lao"
+        }
+    }
+
+]
+

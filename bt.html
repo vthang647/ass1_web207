@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="btvn">
+      <div ng-init="x=0;y=0">
+        <input type="text" name="num11" id="num11" ng-model="x" />+
+        <input type="text" name="num22" id="num22" ng-model="y" />=
+        <input type="text" name="num33" id="num33" value="{{total()}}" />
+      </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/angular-route.js"></script>
+    <script src="./myApp.js"></script>
+    <script src="./myCtrl.js"></script>
+  </body>
+</html>

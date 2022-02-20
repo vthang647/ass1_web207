@@ -1,0 +1,15 @@
+<div
+  class="row row-cols-1 row-cols-sm-2 row-cols-md-4"
+  ng-controller="Subjects"
+>
+  <div class="col mt-3" ng-repeat="sub in Subjects">
+    <div class="card h-100">
+      <div class="card-body text-center">
+        <strong class="card-text">{{sub.Name}}</strong>
+      </div>
+      <div class="card-footer" ng-init="myUrl = './images/logos/'+sub.Logo">
+        <a href="#"><img src="{{myUrl}}" alt="" /></a>
+      </div>
+    </div>
+  </div>
+</div>

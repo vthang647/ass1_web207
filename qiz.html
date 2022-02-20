@@ -1,0 +1,40 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><strong>QUESTIONS</strong></li>
+        <li
+          class="breadcrumb-item"
+          aria-current="page"
+          ng-repeat="x in indexQiz"
+        >
+          Question {{x}}
+        </li>
+      </ol>
+    </nav>
+    <strong>MARKS: {{marks+1}}/{{questions.length}}</strong>
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <div>
+        <strong>Câu {{indexQ+1}}: {{questions[indexQ].Text}}</strong>
+      </div>
+      <li class="list-group-item" ng-repeat="y in questions[indexQ].Answers">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="answers"
+          />
+          <label class="form-check-label" for="answers"> {{y.Text}} </label>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+    <button type="button" class="btn btn-success" ng-click="next_Qiz()">
+      next question >>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <title>Adminstrator</title>
+  </head>
+  <body>
+    <div class="container" ng-app="myApp" ng-controller="manager">
+      <div class="row mt-3"></div>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="update-tab-1"
+            data-bs-toggle="tab"
+            data-bs-target="#update"
+            type="button"
+            role="tab"
+            aria-controls="update"
+            aria-selected="true"
+          >
+            <i class="fas fa-edit"></i> USERS
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="profile-tab-1"
+            data-bs-toggle="tab"
+            data-bs-target="#profile"
+            type="button"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+          >
+            <i class="fas fa-list"></i> QUIZS
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="update"
+          role="tabpanel"
+          aria-labelledby="update-tab"
+        >
+          <div class="card">
+            <div class="card-header bg-secondary text-light">
+              <i class="fas fa-edit"></i> MANAGER STUDENTS
+            </div>
+            <div class="card-body">
+              <form action="" method="get">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Password</th>
+                      <th scope="col">Fullname</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Gender</th>
+                      <th scope="col">Birthday</th>
+                      <th scope="col">feeSchool</th>
+                      <th scope="col">Marks</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="st in studentss">
+                      <th scope="row">{{$index + 1}}</th>
+                      <td>{{st.username}}</td>
+                      <td>{{st.password}}</td>
+                      <td>{{st.fullname}}</td>
+                      <td>{{st.email}}</td>
+                      <td>{{st.gender ? 'Nam' : 'Nữ'}}</td>
+                      <td>{{st.birthday}}</td>
+                      <td>{{st.schoolfee}}</td>
+                      <td>{{st.marks}}</td>
+                      <td>
+                        <button type="button" class="btn btn-danger" ng-click="chooseStu($index)">+</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="text-right">
+                  <button type="button">prev</button>
+                  <button type="button">next</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="profile"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+        >
+          <div class="card row" style="width: 100%">
+            <div class="card-header">
+              <i class="fas fa-edit"></i> QUIZS MANAGERMENT
+            </div>
+            <!-- <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" rowspan="2">Mã NV</th>
+                    <th scope="col" rowspan="2">Họ Tên</th>
+                    <th scope="col" colspan="3">Thu nhập</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">NV100</th>
+                    <td>Nguyễn Công Phượng</td>
+                    <td>500000</td>
+                    <td>4000000</td>
+                    <td>2000000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              Lương của cầu thủ và huấn luyên viên chuyên nghiệp
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="Studentsss"
+          tabindex="-1"
+          aria-labelledby="StudentsssLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="StudentsssLabel">
+                  Informations of Student
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form name="studentForm">
+                  <div class="mb-3">
+                    <label for="sUsername" class="form-label"
+                      ><strong>Username</strong></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="sUsername"
+                      name="txtsUsername"
+                      required
+                      ng-model="BufStudent.username"
+                    />
+                    <span
+                      ng-show="studentForm.txtsUsername.$invalid"
+                      style="color: red"
+                      >Username must be required</span
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="sPassword" class="form-label"
+                      ><strong>Password</strong></label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="sPassword"
+                      name="txtsPasswrd"
+                      required
+                      ng-model="BufStudent.password"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="sFullname" class="form-label"
+                      ><strong>Fullname</strong></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="sFullname"
+                      name="txtsFullname"
+                      required
+                      ng-model="BufStudent.fullname"
+                      placeholder=""
+                    />
+                    <span
+                      ng-show="studentForm.txtsFullname.$invalid"
+                      style="color: red"
+                      >Fullname must be required</span
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="sEmail" class="form-label"
+                      ><strong>Email</strong></label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="sEmail"
+                      name="txtsEmail"
+                      required
+                      ng-model="BufStudent.email"
+                    />
+                    <span
+                      ng-show="studentForm.txtsEmail.$invalid"
+                      style="color: red"
+                      >Email doesn't format</span
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="render" class="form-label">Giới tính :</label>
+                    <div class="form-check form-check-inline" id="render">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault1"
+                        value="true"
+                        ng-model="BufStudent.gender"
+                      />
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Nam
+                      </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault2"
+                        value="false"
+                        ng-model="BufStudent.gender"
+                      />
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Nữ
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="Birthday" class="form-label"
+                      ><strong>Birthday (MM/dd/yyyy)</strong></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="sBirthday"
+                      name="txtBirthday"
+                      required
+                      ng-model="BufStudent.birthday"
+                      placeholder=""
+                    />
+                    <span
+                      ng-show="studentForm.txtBirthday.$invalid"
+                      style="color: red"
+                      >Birthday doesn't format</span
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label class="col-2" for="schoolFee">School Fee</label>
+                    <div class="col-10">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input
+                          id="schoolFee"
+                          type="text"
+                          name="schoolFeeB"
+                          class="form-control"
+                          ng-model="BufStudent.schoolfee"
+                          aria-label="Amount (to the nearest dollar)"
+                        />
+                        <span class="input-group-text">.00</span>
+                        <span
+                          ng-show="studentForm.schoolFeeB.$invalid"
+                          style="color: red"
+                          >School fee doesn't format</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="col-2" for="marksBuf">Marks</label>
+                    <input
+                      id="marksBuf"
+                      type="text"
+                      name="marksB"
+                      ng-model="BufStudent.marks"
+                      class="form-control"
+                    />
+                    <span
+                      ng-show="studentForm.marksB.$invalid"
+                      style="color: red"
+                      >Marks doesn't format</span
+                    >
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" ng-click="save()" class="btn btn-primary">Save</button>
+                <button type="button" ng-click="add()" class="btn btn-primary">Add</button>
+                <button type="button" ng-click="delete()" class="btn btn-primary">Delete</button>
+                <button type="button" ng-click="refresh()" class="btn btn-primary">Refresh</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="./js/angular.js"></script> -->
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/angular-route.js"></script>
+    <script src="./js/angular-resource.min.js"></script>
+    <script src="./myApp.js"></script>
+    <script src="./myCtrl.js"></script>
+  </body>
+</html>

@@ -1,38 +1,49 @@
 <div class="card mt-3">
   <div class="card-header"><strong>ĐẶT CÂU HỎI</strong></div>
   <div class="card-body">
-    <div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Họ tên</label>
-        <input
-          type="text"
-          class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="Nguyễn Văn B"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label"
-          >Địa chỉ Email</label
+    <form action="#" method="get" name="frmBonus">
+      <label for="exampleFormControlInput1" class="form-label">Họ tên</label>
+      <input
+        type="text"
+        class="form-control"
+        name="txtFullname"
+        required
+        ng-model="fullName"
+        id="exampleFormControlInput1"
+        placeholder="Nguyễn Văn B"
+      />
+      <div>
+        <span ng-show="frmBonus.txtFullname.$invalid" style="color: red"
+          >Vui long nhap ho ten</span
         >
-        <input
-          type="email"
-          class="form-control"
-          id="exampleFormControlInput1"
-          placeholder="name@example.com"
-        />
       </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">
-          Nội dung</label
+
+      <label for="exampleFormControlInput1" class="form-label"
+        >Địa chỉ Email</label
+      >
+      <input
+        type="email"
+        required
+        class="form-control"
+        name="txtEmail"
+        ng-model="email"
+        id="exampleFormControlInput1"
+        placeholder="name@example.com"
+      />
+      <div>
+        <span ng-show="frmBonus.txtEmail.$invalid" style="color: red"
+          >Email khong dung dinh dang</span
         >
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="3"
-        ></textarea>
       </div>
-    </div>
-    <a href="#" class="btn btn-primary">Gửi</a>
+      <label for="exampleFormControlTextarea1" class="form-label">
+        Nội dung</label
+      >
+      <textarea
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+      ></textarea>
+      <button class="btn btn-primary mt-3">Gửi</button>
+    </form>
   </div>
 </div>

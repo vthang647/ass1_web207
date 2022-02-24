@@ -1,24 +1,41 @@
-<div class="card mt-3">
+<div class="card mt-3" ng-controller="Students_">
   <div class="card-header">
     <strong>Đổi mật khẩu</strong>
   </div>
   <div class="card-body">
     <div class="mb-3">
       <label for="currentPass" class="form-label">Nhập mật khẩu hiện tại</label>
-      <input type="password" class="form-control" id="currentPass" />
+      <input
+        type="password"
+        ng-model="prePass"
+        class="form-control"
+        id="currentPass"
+      />
     </div>
     <div class="mb-3">
       <label for="newPass" class="form-label">Nhập mật khẩu mới</label>
-      <input type="password" class="form-control" id="newPass" />
+      <input
+        type="password"
+        class="form-control"
+        ng-model="newPrePass"
+        id="newPass"
+      />
     </div>
     <div class="mb-3">
       <label for="newRepeatPass" class="form-label"
         >Nhập lại mật khẩu mới</label
       >
-      <input type="password" class="form-control" id="newRepeatPass" />
+      <input
+        type="password"
+        ng-model="newPreRepeatPass"
+        class="form-control"
+        id="newRepeatPass"
+      />
     </div>
   </div>
   <div class="card-footer">
-    <button type="button" class="btn btn-warning">Đổi mật khẩu</button>
+    <button type="button" ng-click="changePass()" class="btn btn-warning">
+      Đổi mật khẩu
+    </button>
   </div>
 </div>

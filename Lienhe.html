@@ -1,24 +1,40 @@
 <div class="card mt-3">
   <div class="card-header">LIÊN HỆ</div>
   <div class="card-body">
-    <div>
+    <form action="#" method="get" name="frmBonus">
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Họ tên</label>
         <input
           type="text"
           class="form-control"
+          name="txtFullname"
+          required
+          ng-model="namee"
           id="exampleFormControlInput1"
           placeholder="Nguyễn văn A"
         />
+        <div>
+          <span ng-show="frmBonus.txtFullname.$invalid" style="color: red"
+            >Vui long nhap ho ten</span
+          >
+        </div>
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Email</label>
         <input
           type="email"
           class="form-control"
+          required
+          name="txtEmail"
+          ng-model="em"
           id="exampleFormControlInput1"
           placeholder="name@example.com"
         />
+        <div>
+          <span ng-show="frmBonus.txtEmail.$invalid" style="color: red"
+            >Email khong dung dinh dang</span
+          >
+        </div>
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
@@ -36,7 +52,7 @@
           rows="3"
         ></textarea>
       </div>
-    </div>
+    </form>
     <a href="#" class="btn btn-primary">GỬI</a>
   </div>
 </div>

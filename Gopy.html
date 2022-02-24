@@ -1,7 +1,7 @@
 <div class="card mt-3">
   <div class="card-header">GÓP Ý</div>
   <div class="card-body">
-    <div>
+    <form action="#" method="get" name="frmBonus">
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
           >Your Email</label
@@ -9,10 +9,17 @@
         <input
           type="email"
           class="form-control"
+          required
+          name="txtEmail"
+          ng-model="eml"
           id="exampleFormControlInput1"
           placeholder="name@example.com"
         />
+        <span ng-show="frmBonus.txtEmail.$invalid" style="color: red"
+          >Email khong dung dinh dang</span
+        >
       </div>
+
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">
           Nội dung GÓP Ý</label
@@ -23,7 +30,7 @@
           rows="3"
         ></textarea>
       </div>
-    </div>
+    </form>
     <a href="#" class="btn btn-primary">Liên hệ</a>
   </div>
 </div>

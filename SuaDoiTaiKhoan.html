@@ -1,65 +1,104 @@
-<div class="card mt-3">
+<div class="card mt-3" ng-controller="Stud">
   <div class="card-header">CẬP NHẬT THÔNG TIN TÀI KHOẢN</div>
-  <div class="card-body">
+  <form name="fromB" class="card-body">
     <div class="mb-3">
       <label for="emaill" class="form-label">Email address</label>
       <input
         type="email"
         class="form-control"
         id="emaill"
+        required
+        name="txtEmail"
+        ng-model="Acc.email"
         placeholder="name@example.com"
       />
+      <span ng-show="fromB.txtEmail.$invalid" style="color: red"
+        >Email email is not format</span
+      >
     </div>
     <div class="mb-3">
       <label for="name" class="form-label">Họ và Tên</label>
       <input
         type="text"
         class="form-control"
+        required
+        name="txtFullname"
+        ng-model="Acc.fullname"
         id="name"
         placeholder="Nguyễn Văn A"
       />
+      <span ng-show="fromB.txtFullname.$invalid" style="color: red"
+        >Name is require</span
+      >
     </div>
     <div class="mb-3">
-      <label for="user" class="form-label">Username</label>
-      <input type="text" class="form-control" id="user" placeholder="" />
+      <label for="birthday" class="form-label">Birthday</label>
+      <input
+        type="text"
+        class="form-control"
+        name="txtBirthday"
+        ng-model="Acc.birthday"
+        id="birthday"
+      />
+      <span ng-show="fromB.txtBirthday.$invalid" style="color: red"
+        >date is not incorect</span
+      >
     </div>
-    <div class="row">
-      <div class="mb-3 col-6">
-        <label for="render" class="form-label">Giới tính :</label>
-        <div class="form-check form-check-inline" id="render">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-          />
-          <label class="form-check-label" for="flexRadioDefault1"> Nam </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-            checked
-          />
-          <label class="form-check-label" for="flexRadioDefault2"> Nữ </label>
-        </div>
+    <div class="mb-3">
+      <label for="render" class="form-label">Giới tính :</label>
+      <div class="form-check form-check-inline" id="render">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault1"
+          value="true"
+          ng-model="Acc.gender"
+        />
+        <label class="form-check-label" for="flexRadioDefault1"> Nam </label>
       </div>
-      <div class="mb-3 col-6">
-        <label for="dantoc" class="form-label">Dân tộc</label>
-        <div class="form-check form-check-inline" id="dantoc">
-          <input class="form-control" type="text" name="dantoc" id="dantoc" />
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="sothich" class="form-label">Sở thích</label>
-        <textarea class="form-control" id="sothich" rows="3"></textarea>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault2"
+          value="false"
+          ng-model="Acc.gender"
+        />
+        <label class="form-check-label" for="flexRadioDefault2"> Nữ </label>
       </div>
     </div>
-  </div>
+    <div class="mb-3">
+      <label for="free" class="form-label">free School</label>
+      <input
+        type="text"
+        class="form-control"
+        name="txtFreeSchool"
+        ng-model="Acc.schoolfee"
+        id="free"
+      />
+      <span ng-show="fromB.txtFreeSchool.$invalid" style="color: red"
+        >free is not incorect</span
+      >
+    </div>
+    <div class="mb-3">
+      <label for="mark" class="form-label">Marks</label>
+      <input
+        type="text"
+        class="form-control"
+        name="txtMark"
+        ng-model="Acc.marks"
+        id="mark"
+      />
+      <span ng-show="fromB.txtMark.$invalid" style="color: red"
+        >free is not incorect</span
+      >
+    </div>
+  </form>
   <div class="card-footer d-flex justify-content-end">
-    <button type="button" class="btn btn-primary">LƯU</button>
+    <button type="button" ng-click="update()" class="btn btn-primary">
+      LƯU
+    </button>
   </div>
 </div>

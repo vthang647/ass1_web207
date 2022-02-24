@@ -5,7 +5,7 @@
         "fullname": "Nguyễn Văn Tèo",
         "email": "teonv@fpt.edu.vn",
         "gender": "true",
-        "birthday": "1995-12-21",
+        "birthday": "12-21-1995",
         "schoolfee": "1500000",
         "marks": "0"
     },
@@ -15,7 +15,7 @@
         "fullname": "Nguyễn Văn Chí Phèo",
         "email": "pheonv@fpt.edu.vn",
         "gender": "true",
-        "birthday": "1985-10-11",
+        "birthday": "10-11-1985",
         "schoolfee": "2500000",
         "marks": "0"
     },
@@ -25,7 +25,7 @@
         "fullname": "Phạm Thị Nở",
         "email": "nopt@fpt.edu.vn",
         "gender": "false",
-        "birthday": "1993-05-15",
+        "birthday": "05-15-1993",
         "schoolfee": "2000000",
         "marks": "0"
     }

@@ -169,27 +169,30 @@ app.controller("dataQuiz", function ($scope, $http, $interval) {
     }
     $scope.cx = false;
   };
-  
+
   $scope.end_Qiz = function (id) {
-    $scope.AddMark = $scope.$parent.Acc
-    $scope.AddMark.marks = parseInt($scope.AddMark.marks) + parseInt($scope.marks);
-    $http({
+    if (confirm("Are your sure to End game?")) {
+      $scope.AddMark = $scope.$parent.Acc;
+      $scope.AddMark.marks =
+        parseInt($scope.AddMark.marks) + parseInt($scope.marks);
+      $http({
+        method: "PUT",
+        url:
+          "https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students/" +
+          $scope.$parent.Acc.id,
+        data: $scope.AddMark,
+      }).then(
+        function successCallback(response) {
+          $scope.$parent.stop();
 
-      method: 'PUT',
-      url: 'https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students/' + $scope.$parent.Acc.id,
-      data: $scope.AddMark
-
-    }).then(function successCallback(response) {
-      $scope.$parent.stop();
-      
-      alert("done Successfully")
-
-    }, function errorCallback(response) {
-
-      alert("Error. Try Again!");
-
-    });
-  }
+          alert("done Successfully");
+        },
+        function errorCallback(response) {
+          alert("Error. Try Again!");
+        }
+      );
+    }
+  };
 
   $scope.cx = false;
   $scope.selectedToggle = function (id) {
@@ -252,9 +255,11 @@ app.controller("Stud", function ($scope) {
 
 app.controller("Students_", function ($scope, $http) {
   $scope.usee = [];
-  $http.get("https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students").then(function (response) {
-    $scope.usee = response.data;
-  });
+  $http
+    .get("https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students")
+    .then(function (response) {
+      $scope.usee = response.data;
+    });
 
   $scope.loginSuccess = false;
   $scope.indexChs = 0;
@@ -268,7 +273,7 @@ app.controller("Students_", function ($scope, $http) {
         $scope.Accounts.username == element.username &&
         $scope.Accounts.passwd == element.password
       ) {
-        $scope.Acc = element
+        $scope.Acc = element;
         $scope.indexChs = index;
         return true;
       }
@@ -296,28 +301,31 @@ app.controller("Students_", function ($scope, $http) {
 
   //update information
   $scope.update = function () {
-    $http({
-
-      method: 'PUT',
-      url: 'https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students/' + $scope.Acc.id,
-      data: $scope.Acc
-
-    }).then(function successCallback(response) {
-      
-      alert("Update Successfully")
-
-    }, function errorCallback(response) {
-
-      alert("Error. Try Again!");
-
-    });
+    if (confirm("Are you sure ?")) {
+      $http({
+        method: "PUT",
+        url:
+          "https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students/" +
+          $scope.Acc.id,
+        data: $scope.Acc,
+      }).then(
+        function successCallback(response) {
+          alert("Update Successfully");
+        },
+        function errorCallback(response) {
+          alert("Error. Try Again!");
+        }
+      );
+    }
   };
 
   //change password
   $scope.changePass = function () {
     if ($scope.newPrePass == $scope.newPreRepeatPass) {
-      if ($scope.Acc.passwd == $scope.prePass) {
-        $scope.usee[$scope.indexChs].password = $scope.newPreRepeatPass;
+      console.log($scope.Acc.password + ",    ...." + $scope.newPrePass);
+      if ($scope.Acc.password == $scope.prePass) {
+        $scope.Acc.password = $scope.newPrePass;
+        $scope.update();
         alert("Change password succesfully! ");
         $scope.newPrePass = "";
         $scope.newPreRepeatPass = "";
@@ -375,23 +383,43 @@ app.controller("Students_", function ($scope, $http) {
     $scope.student = {
       username: $scope.resg.username,
       password: $scope.resg.passwd,
-      fullname: "",
       email: $scope.resg.email,
-      gender: "true",
-      birthday: "",
-      schoolfee: "",
-      marks: "0",
     };
     if ($scope.registerCheckb()) {
-      $scope.usee.push($scope.student);
-
+      if (confirm("Are you sure to register?")) {
+        $http.post("https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students/", $scope.student).then((data) => {
+          console.log(data);
+          if (data.statusText === "Created") {
+            window.location.href = "index.html";
+          }
+        });
+      }
       alert("Register succesfully!");
       $("#dangKy").modal("hide");
     } else {
       alert("Register Fail because this username existed!");
     }
   };
+});
 
+app.controller("changPasss", function ($scope) {
+  $scope.changePass = function () {
+    if ($scope.newPrePass == $scope.newPreRepeatPass) {
+      console.log($scope.$parent.Acc.password + ",    ...." + $scope.newPrePass);
+      if ($scope.$parent.Acc.password == $scope.prePass) {
+        $scope.$parent.Acc.password = $scope.newPrePass;
+        $scope.$parent.update();
+        alert("Change password succesfully! ");
+        $scope.newPrePass = "";
+        $scope.newPreRepeatPass = "";
+        $scope.prePass = "";
+      } else {
+        alert("pre pass is not correct");
+      }
+    } else {
+      alert("new password and repeat password must be duplicate");
+    }
+  };
 });
 
 app.controller("manager", function ($scope, $http) {
@@ -434,49 +462,53 @@ app.controller("manager", function ($scope, $http) {
   };
 
   $scope.save = function () {
-    $http({
-
-      method: 'PUT',
-      url: 'https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students/' + $scope.BufStudent.id,
-      data: $scope.BufStudent
-
-    }).then(function successCallback(response) {
-
-      alert("User has updated Successfully")
-      $("#Studentsss").modal("hide");
-
-    }, function errorCallback(response) {
-
-      alert("Error. while updating user Try Again!");
-
-    });
+    if (confirm("Are you sure to Save?")) {
+      $http({
+        method: "PUT",
+        url:
+          "https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students/" +
+          $scope.BufStudent.id,
+        data: $scope.BufStudent,
+      }).then(
+        function successCallback(response) {
+          alert("User has updated Successfully");
+          $("#Studentsss").modal("hide");
+        },
+        function errorCallback(response) {
+          alert("Error. while updating user Try Again!");
+        }
+      );
+    }
   };
   $scope.add = function () {
-    $http.post(urll, $scope.BufStudent).then(data => {
-      console.log(data);
-      if (data.statusText === "Created") {
-        window.location.href = "admin.html"
-      }
-    })
+    if (confirm("Are you sure to Add?")) {
+      $http.post(urll, $scope.BufStudent).then((data) => {
+        console.log(data);
+        if (data.statusText === "Created") {
+          window.location.href = "admin.html";
+        }
+      });
+    }
   };
   $scope.delete = function () {
-    $http({
-
-      method: 'DELETE',
-      url: 'https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students/' + $scope.BufStudent.id
-
-    }).then(function successCallback(response) {
-
-      alert("User has deleted Successfully");
-      var index = $scope.studentss.indexOf($scope.BufStudent);
-      $scope.studentss.splice(index, 1);
-      $("#Studentsss").modal("hide");
-
-    }, function errorCallback(response) {
-
-      alert("Error. while deleting user Try Again!");
-
-    });
+    if (confirm("Are you sure to Delete?")) {
+      $http({
+        method: "DELETE",
+        url:
+          "https://621591fcc9c6ebd3ce2bacc6.mockapi.io/api/v1/Students/" +
+          $scope.BufStudent.id,
+      }).then(
+        function successCallback(response) {
+          alert("User has deleted Successfully");
+          var index = $scope.studentss.indexOf($scope.BufStudent);
+          $scope.studentss.splice(index, 1);
+          $("#Studentsss").modal("hide");
+        },
+        function errorCallback(response) {
+          alert("Error. while deleting user Try Again!");
+        }
+      );
+    }
   };
   $scope.refresh = function () {
     $scope.BufStudent = {
